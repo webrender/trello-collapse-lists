@@ -1,0 +1,63 @@
+.js-list.-closed {
+    width: 41px;
+}
+
+.js-list.-closed .list * {
+    display: none !important;
+}
+
+.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle {
+    display: block !important;
+}
+
+.js-list .list .list-header-name {
+    width: calc(100% - 22px);
+}
+
+.js-list.-closed .list .list-header-name {
+    height: 41px !important;
+    width: auto;
+    line-height: 35px;
+    display: block !important;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    top: 29px;
+    left: 9px;
+    position: relative;
+    background: #E2E4E6;
+}
+
+.collapse-toggle {
+    float: left;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.collapse-toggle:after {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    position: absolute;
+    top: 8px;
+    left: 5px;
+}
+
+
+.js-list.-closed .collapse-toggle:after {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000;
+    border-right: none;
+    left: 8px;
+    top: 5px;
+}
