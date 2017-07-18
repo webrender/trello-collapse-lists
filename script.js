@@ -22,7 +22,44 @@ document.querySelectorAll('.list-header-name').forEach( e => {
                 evt.target.parentNode.parentNode.parentNode.classList.toggle('-closed');
             });
         })
+        e.parentNode.parentNode.parentNode.setAttribute('draggable', true);
         // insert toggle button
         e.parentNode.insertBefore(toggle, e);
     });
+});
+// we want to open lists after a short delay if a user is dragging a card on top of one
+// trello already uses jQuery draggable, but we have to create new events since content scripts
+// cant access JS on the parent page.
+var isClosed, openList;
+// make all cards draggable - revert to their former location if they werent moved, and don't wait to revert after drop
+$('.list-card').draggable({revert: true, revertDuration: 0});
+// make all lists droppable
+$('.js-list').droppable({
+    // we only want to look at the area below the pointer
+    tolerance: 'pointer',
+    // when we move over a column, if it's closed, open it after a short period.
+    // we use isClosed to keep track of the list's initial state so we know if we need to close it after.
+    over: (evt, ui) => {
+        if (evt.target.classList.contains('-closed')) {
+            openList = setTimeout(() => {
+                evt.target.classList.remove('-closed');
+                isClosed = true;
+            }, 250);
+        } else {
+            isClosed = false;
+        }
+    },
+    // when we leave a list or drop an item on it, clear the timeout and close it if it was originally closed.
+    out: (evt, ui) => {
+        clearTimeout(openList);
+        if (isClosed) {
+            evt.target.classList.add('-closed');
+        }
+    },
+    drop: (evt, ui) => {
+        clearTimeout(openList);
+        if (isClosed) {
+            evt.target.classList.add('-closed');
+        }
+    }
 });
