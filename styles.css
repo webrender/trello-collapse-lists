@@ -1,24 +1,24 @@
-// closed list
+/* closed list */
 .js-list.-closed {
     width: 41px;
 }
 
-// hide everything in a closed list...
+/* hide everything in a closed list... */
 .js-list.-closed .list * {
     display: none !important;
 }
 
-// ...except for the title and the collapse toggle
+/* ...except for the title and the collapse toggle */
 .js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle {
     display: block !important;
 }
 
-// we need to reduce the width of the title to fit the collapse toggle in
+/* we need to reduce the width of the title to fit the collapse toggle in */
 .js-list .list .list-header-name {
     width: calc(100% - 22px);
 }
 
-// collapsed list header - rotated + some css hackery to make it look right
+/* collapsed list header - rotated + some css hackery to make it look right */
 .js-list.-closed .list .list-header-name {
     height: 41px !important;
     width: auto;
@@ -32,7 +32,7 @@
     background: #E2E4E6;
 }
 
-// collapse toggle button
+/* collapse toggle button */
 .collapse-toggle {
     float: left;
     cursor: pointer;
@@ -45,7 +45,7 @@
     position: relative;
 }
 
-// collapse toggle button - triangle
+/* collapse toggle button - triangle */
 .collapse-toggle:after {
     display: block;
     content: '';
@@ -59,7 +59,7 @@
     left: 5px;
 }
 
-// collapse toggle button - triangle - closed state
+/* collapse toggle button - triangle - closed state */
 .js-list.-closed .collapse-toggle:after {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
