@@ -1,20 +1,24 @@
 {
    "content_scripts": [ {
       "css": [ "styles.css" ],
-      "js": [ "jquery.js", "jquery-ui.js", "script.js" ],
+      "js": [ "jquery.js", "jquery-ui.js"],
       "matches": [
         "https://trello.com/b/*"
       ]
    } ],
+   "background": {
+        "scripts": ["background.js"]
+   },
    "description": "Allows the user to collapse Trello lists. List setting is stored in Chrome extension storage.",
    "browser_action": {
       "default_icon": "icon.png"
    },
    "manifest_version": 2,
    "name": "Collapsible Trello Lists",
-   "version": "1.1.1",
+   "version": "1.1.2",
    "permissions": [
       "storage",
-      "https://trello.com/"
+      "webNavigation",
+      "*://trello.com/*"
    ]
 }
