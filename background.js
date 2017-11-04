@@ -1,19 +1,19 @@
-var injectTimeout, currentUrl;
+/*global chrome*/
+var thisTab, debounce;
 
 function inject() {
-    chrome.tabs.executeScript(null,{file:"script.js"});
+	chrome.tabs.insertCSS(thisTab,{file:'styles.css'});
+	chrome.tabs.executeScript(thisTab,{file:'jquery.js'});
+	chrome.tabs.executeScript(thisTab,{file:'jquery-ui.js'});
+	chrome.tabs.executeScript(thisTab,{file:'script.js'});
 }
 
-chrome.webNavigation.onHistoryStateUpdated.addListener(function(details) {
-    if(details.url.indexOf('https://trello.com/b/') > -1) {
-        if (details.url.substr(0,30) != currentUrl) {
-            currentUrl = details.url.substr(0,30);
-            if (!injectTimeout) {
-                injectTimeout = setTimeout(inject, 1000);
-            } else {
-                clearTimeout(injectTimeout);
-                injectTimeout = setTimeout(inject, 1000);
-            }
-        }
-    }
-});
+function onTabUpdated(tabId, changeInfo, tab) {
+	if (changeInfo.status === 'complete' && tab.url.indexOf('trello.com/b/') > -1) {
+		thisTab = tabId;
+		window.clearTimeout(debounce);
+		debounce = setTimeout(inject, 1000);
+	}
+}
+
+chrome.tabs.onUpdated.addListener(onTabUpdated);
