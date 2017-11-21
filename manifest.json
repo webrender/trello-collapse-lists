@@ -14,5 +14,10 @@
       "storage",
       "webNavigation",
       "*://trello.com/*"
-   ]
+   ],
+   "applications": {
+      "gecko": {
+         "id": "trello-collapse-columns@webrender.net"
+      }
+   }
 }
