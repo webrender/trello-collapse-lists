@@ -1,6 +1,11 @@
 /* closed list */
 .js-list.-closed {
     width: 41px;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    position: relative;
+    height: 42px;
+    left: 42px;
 }
 
 /* hide everything in a closed list... */
@@ -20,16 +25,14 @@
 
 /* collapsed list header - rotated + some css hackery to make it look right */
 .js-list.-closed .list .list-header-name {
-    height: 41px !important;
+    height: 38px !important;
     width: auto;
-    line-height: 35px;
+    line-height: 30px;
     display: block !important;
-    transform: rotate(90deg);
-    transform-origin: top left;
-    top: 29px;
-    left: 9px;
-    position: relative;
+    position: absolute;
     background: #E2E4E6;
+    left: 41px;
+    top: 3px;
 }
 
 /* collapse toggle button */
