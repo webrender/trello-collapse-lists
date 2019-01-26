@@ -3,8 +3,8 @@ var thisTab, debounce;
 
 function inject() {
 	chrome.tabs.insertCSS(thisTab,{file:'styles.css'});
-	chrome.tabs.executeScript(thisTab,{file:'jquery.js'});
-	chrome.tabs.executeScript(thisTab,{file:'jquery-ui.js'});
+	chrome.tabs.executeScript(thisTab,{file:'jquery.min.js'});
+	chrome.tabs.executeScript(thisTab,{file:'jquery-ui.min.js'});
 	chrome.tabs.executeScript(thisTab,{file:'script.js'});
 }
 
