@@ -13,9 +13,14 @@
     display: none !important;
 }
 
-/* ...except for the title and the collapse toggle */
-.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle {
+/* ...except for the title and the collapse toggle (if appropriate) */
+.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle:not(.collapse-toggle-hidden) {
     display: block !important;
+}
+
+/* collapse toggle button - helper class for hiding */
+.collapse-toggle-hidden {
+    display: none;
 }
 
 /* we need to reduce the width of the title to fit the collapse toggle in */
@@ -33,6 +38,11 @@
     background: #E2E4E6;
     left: 36px;
     top: 4px;
+}
+
+/* shift list title upwards (i.e. close the gap) when toggle icon is hidden */
+.js-list.-closed .list .collapse-toggle-hidden ~ .list-header-name {
+    left: 8px;
 }
 
 /* collapse toggle button */
@@ -68,9 +78,4 @@
     border-right: none;
     left: 8px;
     top: 5px;
-}
-
-/* collapse toggle button - helper class for hiding */
-.collapse-toggle-hidden {
-    display: none;
 }
