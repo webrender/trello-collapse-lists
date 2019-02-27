@@ -69,3 +69,8 @@
     left: 8px;
     top: 5px;
 }
+
+/* collapse toggle button - helper class for hiding */
+.collapse-toggle-hidden {
+    display: none;
+}

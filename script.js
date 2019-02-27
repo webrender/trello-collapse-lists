@@ -12,7 +12,7 @@ if (!document.querySelector('.collapse-toggle')) {
                 e.parentNode.parentNode.parentNode.classList.add('-closed');
             // create toggle button
             var toggle = document.createElement("div");
-            toggle.className = 'collapse-toggle';
+            toggle.className = 'collapse-toggle collapse-toggle-hidden';
             // toggle click handler
             toggle.addEventListener('click', evt => {
                 // get column name from event target
@@ -22,6 +22,14 @@ if (!document.querySelector('.collapse-toggle')) {
                     // toggle the -closed class on successful save
                     evt.target.parentNode.parentNode.parentNode.classList.toggle('-closed');
                 });
+            })
+            e.parentNode.addEventListener('mouseover', evt => {
+                // show toggle icon
+                $(evt.target.parentNode).find('.collapse-toggle').removeClass('collapse-toggle-hidden');
+            })
+            e.parentNode.addEventListener('mouseout', evt => {
+                // hide toggle icon
+                $(evt.target.parentNode).find('.collapse-toggle').addClass('collapse-toggle-hidden');
             })
             e.parentNode.parentNode.parentNode.setAttribute('draggable', true);
             // insert toggle button
