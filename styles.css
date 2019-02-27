@@ -4,8 +4,8 @@
     transform: rotate(90deg);
     transform-origin: top left;
     position: relative;
-    height: 42px;
-    left: 42px;
+    height: 40px;
+    left: 40px;
 }
 
 /* hide everything in a closed list... */
@@ -13,19 +13,24 @@
     display: none !important;
 }
 
-/* ...except for the title and the collapse toggle */
-.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle {
+/* ...except for the title and the collapse toggle (if appropriate) */
+.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle:not(.collapse-toggle-hidden) {
     display: block !important;
+}
+
+/* collapse toggle button - helper class for hiding */
+.collapse-toggle-hidden {
+    display: none;
 }
 
 /* we need to reduce the width of the title to fit the collapse toggle in */
 .js-list .list .list-header-name {
-    width: calc(100% - 22px);
+    width: calc(100% - 20px);
 }
 
 /* collapsed list header - rotated + some css hackery to make it look right */
 .js-list.-closed .list .list-header-name {
-    height: 40px !important;
+    height: 38px !important;
     width: auto;
     line-height: 30px;
     display: block !important;
@@ -35,17 +40,20 @@
     top: 4px;
 }
 
+/* shift list title upwards (i.e. close the gap) when toggle icon is hidden */
+.js-list.-closed .list .collapse-toggle-hidden ~ .list-header-name {
+    left: 8px;
+}
+
 /* collapse toggle button */
 .collapse-toggle {
     float: left;
     cursor: pointer;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 50%;
     height: 20px;
     width: 20px;
     text-align: center;
     position: relative;
+    opacity: 0.5;
 }
 
 /* collapse toggle button - triangle */
