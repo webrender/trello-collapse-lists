@@ -1,11 +1,12 @@
 /* closed list */
 .js-list.-closed {
-    width: 41px;
     transform: rotate(90deg);
     transform-origin: top left;
     position: relative;
     height: 42px;
     left: 42px;
+    width: 228px;
+    margin-right: -182px;
 }
 
 /* hide everything in a closed list... */
@@ -14,7 +15,10 @@
 }
 
 /* ...except for the title and the collapse toggle */
-.js-list.-closed .list .list-header, .js-list.-closed .list .collapse-toggle {
+.js-list.-closed .list .list-header, 
+.js-list.-closed .list .collapse-toggle, 
+.js-list.-closed .list-header-extras, 
+.js-list.-closed .list-header-extras-menu {
     display: block !important;
 }
 
@@ -29,10 +33,14 @@
     width: auto;
     line-height: 30px;
     display: block !important;
-    position: absolute;
+    position: absolute; 
     background: #E2E4E6;
     left: 36px;
     top: 4px;
+}
+
+.ui-draggable-dragging {
+    display: none !important;
 }
 
 /* collapse toggle button */
