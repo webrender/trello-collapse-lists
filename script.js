@@ -34,31 +34,27 @@ if (!document.querySelector(".collapse-toggle")) {
             evt.target.parentNode.parentNode.parentNode.classList.toggle(
               "-closed"
             );
+            evt.target.parentNode.parentNode.parentNode.classList.toggle(
+              "-cl"
+            );
           }
         );
       });
-      //   e.parentNode.parentNode.parentNode.setAttribute("draggable", true);
       // insert toggle button
       e.parentNode.insertBefore(toggle, e);
     });
   });
   // we want to open lists after a short delay if a user is dragging a card on top of one
-  // trello already uses jQuery draggable, but we have to create new events since content scripts
-  // cant access JS on the parent page.
   var isClosed, openList;
-  $(".list-card").draggable({
-    helper: "clone",
-    // we used to use a jquery droppable event to monitor drop events, but either trello or jquery ui
-    // changed something that broke this.  now, while a user is dragging, we use the code below to 
-    // evaluate if the pointer is over a closed list and react accordingly
-    drag: e => {
+  document.querySelectorAll(".list-card").forEach(lc => {
+    lc.addEventListener("mousemove", lce => {
       document.querySelectorAll(".js-list.-cl").forEach(l => {
         const c = l.getBoundingClientRect();
         if (
-          e.pageX > c.left &&
-          e.pageX < c.right &&
-          e.pageY > c.top &&
-          e.pageY < c.bottom
+          lce.pageX > c.left &&
+          lce.pageX < c.right &&
+          lce.pageY > c.top &&
+          lce.pageY < c.bottom
         ) {
           if (!openList) {
             // we use a timeout here so that users can drag cards across a closed list without
@@ -66,17 +62,17 @@ if (!document.querySelector(".collapse-toggle")) {
             openList = setTimeout(() => {
               l.classList.add("-open");
               l.classList.remove("-closed");
-            }, 250)
+            }, 250);
           }
         } else {
-          clearTimeout(openList)
-          openList = null
+          clearTimeout(openList);
+          openList = null;
           if (l.classList.contains("-open")) {
             l.classList.remove("-open");
             l.classList.add("-closed");
           }
         }
       });
-    }
+    });
   });
 }
