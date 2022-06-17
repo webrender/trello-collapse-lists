@@ -12,7 +12,6 @@
    "permissions": [
       "tabs",
       "storage",
-      "webNavigation",
       "*://trello.com/*"
    ]
 }
