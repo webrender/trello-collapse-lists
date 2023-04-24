@@ -1,17 +1,22 @@
 {
    "background": {
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
    },
    "description": "Allows the user to collapse Trello lists. List setting is stored in extension storage.",
-   "browser_action": {
-      "default_icon": "icon.png"
+   "action": {
+      "default_icon": {
+         "128": "icon.png"
+      }
    },
-   "manifest_version": 2,
+   "manifest_version": 3,
    "name": "Collapsible Trello Lists",
-   "version": "1.1.9",
+   "version": "1.1.10",
    "permissions": [
       "tabs",
       "storage",
+      "scripting"
+   ],
+   "host_permissions": [
       "*://trello.com/*"
    ]
 }

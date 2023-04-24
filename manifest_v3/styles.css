@@ -1,0 +1,81 @@
+/* closed list */
+body #board .js-list.-closed {
+    transform: rotate(90deg);
+    transform-origin: top left;
+    position: relative;
+    height: 42px;
+    left: 42px;
+    width: 228px;
+    margin-right: -182px;
+}
+
+/* hide everything in a closed list... */
+.js-list.-closed .list * {
+    display: none !important;
+}
+
+/* ...except for the title and the collapse toggle */
+.js-list.-closed .list .list-header, 
+.js-list.-closed .list .collapse-toggle, 
+.js-list.-closed .list-header-extras, 
+.js-list.-closed .list-header-extras-menu {
+    display: block !important;
+}
+
+/* we need to reduce the width of the title to fit the collapse toggle in */
+.js-list .list .list-header-name {
+    width: calc(100% - 22px);
+}
+
+/* collapsed list header - rotated + some css hackery to make it look right */
+.js-list.-closed .list .list-header-name {
+    height: 40px !important;
+    width: auto;
+    line-height: 30px;
+    display: block !important;
+    position: absolute; 
+    background: transparent;
+    left: 36px;
+    top: 4px;
+}
+
+.ui-draggable-dragging {
+    display: none !important;
+}
+
+/* collapse toggle button */
+.collapse-toggle {
+    float: left;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* collapse toggle button - triangle */
+.collapse-toggle:after {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    position: absolute;
+    top: 8px;
+    left: 5px;
+}
+
+/* collapse toggle button - triangle - closed state */
+.js-list.-closed .collapse-toggle:after {
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000;
+    border-right: none;
+    left: 8px;
+    top: 5px;
+}

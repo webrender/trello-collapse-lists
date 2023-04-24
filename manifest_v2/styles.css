@@ -1,5 +1,5 @@
 /* closed list */
-.js-list.-closed {
+body #board .js-list.-closed {
     transform: rotate(90deg);
     transform-origin: top left;
     position: relative;
@@ -34,7 +34,7 @@
     line-height: 30px;
     display: block !important;
     position: absolute; 
-    background: #E2E4E6;
+    background: transparent;
     left: 36px;
     top: 4px;
 }
