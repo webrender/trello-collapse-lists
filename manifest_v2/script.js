@@ -5,7 +5,7 @@ if (!document.querySelector(".collapse-toggle")) {
     window.location.href.indexOf("/b/") + 11
   );
   // get all lists
-  document.querySelectorAll(".list-header-name").forEach(e => {
+  document.querySelectorAll("h2[data-testid='list-name']").forEach(e => {
     // encoded list title for unique id
     var columnName = encodeURI(e.textContent);
     // get isClosed value from chrome extension storage
@@ -46,9 +46,9 @@ if (!document.querySelector(".collapse-toggle")) {
   });
   // we want to open lists after a short delay if a user is dragging a card on top of one
   var isClosed, openList;
-  document.querySelectorAll(".list-card").forEach(lc => {
-    lc.addEventListener("mousemove", lce => {
-      document.querySelectorAll(".js-list.-cl").forEach(l => {
+  document.querySelectorAll("div[data-testid='list']").forEach(lc => {
+    lc.addEventListener("dragenter", lce => {
+      document.querySelectorAll("div[data-testid='list'].-cl").forEach(l => {
         const c = l.getBoundingClientRect();
         if (
           lce.pageX > c.left &&

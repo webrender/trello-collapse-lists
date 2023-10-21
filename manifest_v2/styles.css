@@ -1,5 +1,5 @@
 /* closed list */
-body #board .js-list.-closed {
+body div[data-testid='list'].-closed {
     transform: rotate(90deg);
     transform-origin: top left;
     position: relative;
@@ -10,25 +10,38 @@ body #board .js-list.-closed {
 }
 
 /* hide everything in a closed list... */
-.js-list.-closed .list * {
+div[data-testid='list'].-closed * {
     display: none !important;
 }
 
 /* ...except for the title and the collapse toggle */
-.js-list.-closed .list .list-header, 
-.js-list.-closed .list .collapse-toggle, 
-.js-list.-closed .list-header-extras, 
-.js-list.-closed .list-header-extras-menu {
+div[data-testid='list'].-closed div[data-testid='list-header'],
+div[data-testid='list'].-closed div[data-testid='list-header'] > div,
+div[data-testid='list'].-closed div[data-testid='list-header'] h2[data-testid='list-name'], 
+div[data-testid='list'].-closed div[data-testid='list-header'] .collapse-toggle {
     display: block !important;
 }
 
+div[data-testid='list'].-closed div[data-testid='list-header'] h2[data-testid='list-name'] {
+    top: -3px;
+}
+
+div[data-testid='list'].-closed .collapse-toggle {
+    top: 2px;
+}
+
 /* we need to reduce the width of the title to fit the collapse toggle in */
-.js-list .list .list-header-name {
+.js-list-container h2[data-testid='list-name'] {
+    left: 27px;
+    padding-left: 5px;
+}
+
+.js-list-container h2[data-testid='list-name'] ~ textarea {
     width: calc(100% - 22px);
 }
 
 /* collapsed list header - rotated + some css hackery to make it look right */
-.js-list.-closed .list .list-header-name {
+.js-list-container.-closed h2[data-testid='list-name'] {
     height: 40px !important;
     width: auto;
     line-height: 30px;
@@ -47,13 +60,16 @@ body #board .js-list.-closed {
 .collapse-toggle {
     float: left;
     cursor: pointer;
-    background: white;
-    border: 1px solid #ccc;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid;
+    border-color: rgba(255,255,255,0.3);
     border-radius: 50%;
     height: 20px;
     width: 20px;
     text-align: center;
     position: relative;
+    top: 5px;
+    left: 5px;
 }
 
 /* collapse toggle button - triangle */
@@ -71,7 +87,7 @@ body #board .js-list.-closed {
 }
 
 /* collapse toggle button - triangle - closed state */
-.js-list.-closed .collapse-toggle:after {
+div[data-testid='list'].-closed .collapse-toggle:after {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 5px solid #000;
